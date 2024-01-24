@@ -1,0 +1,56 @@
+<section>
+    <button routerLink="/agregar-video"
+        class="buttonAdd btn btn-primary buttonAgregar">Agregar Video</button>
+    <div class="container text-center">
+        <h2 class="mb-3">Lista de Videos</h2>
+
+        <div>
+            <input type="search"
+                name="search"
+                placeholder="Buscar"
+                [(ngModel)]="search"
+                (input)="buscar()">
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <button (click)="filtrarCategorias('')" class="btn btn-sm btn-warning">todas</button><br><br>
+                </li>
+                <li *ngFor="let cat of categorias">
+                    <button (click)="filtrarCategorias(cat)" class="btn btn-sm btn-warning">{{cat}}</button><br><br>
+                </li>
+            </ul>
+        </div>
+
+        <div class="text-center">
+            <div class="card" style="width: 18rem;"
+                *ngFor="let video of videosAux">
+                <iframe class="card-img-top" width="560" height="315"
+                    [src]="video.url | safe" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <!--<iframe class="card-img-top" width="560" height="315"
+                src="https://www.youtube.com/watch?v=RK1RRVR9A2g&list=PL4Gr5tOAPttJ247vzkv1ZbUEm_YtKLejH"
+                frameborder="0" allowfullscreen></iframe>
+            -->
+
+                <div class="card-body">
+                    <h5 class="card-title">{{video.title}}</h5>
+                    <p class="card-text">{{video.category}}</p>
+                    <a [routerLink]="['/listado', video.id]"
+                        class="btn btn-primary">Ver detalle</a>
+                    <button
+                        class="btn button btn-warning"
+                        [routerLink]="['/editar-videos', video.id]"><i
+                            class="bi bi-pencil-fill"></i></button>
+                    <button
+                        class="btn button btn-danger"
+                        (click)="eliminar(video)"><i
+                            class="bi bi-trash3-fill"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

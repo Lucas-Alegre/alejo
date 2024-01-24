@@ -1,0 +1,32 @@
+<div class="container">
+    <iframe class="card-img-top" width="860" height="515"
+        [src]="video.url | safe" title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+
+    <h5 class="card-title">{{video.title}}</h5>
+    <p>Vistos: {{video.views}}</p>
+    <p class="card-text">{{video.description}}</p>
+    <p class="card-text">{{video.category}}</p>
+    <form >
+        <p class="clasificacion">
+          <input [disabled]="votado" id="radio1" (click)="valorar(1)" type="radio" name="estrellas" value="5"><!--
+          --><label for="radio1">★</label><!--
+          --><input [disabled]="votado" id="radio2" (click)="valorar(2)" type="radio" name="estrellas" value="4"><!--
+          --><label for="radio2">★</label><!--
+          --><input [disabled]="votado" id="radio3" (click)="valorar(3)" type="radio" name="estrellas" value="3"><!--
+          --><label for="radio3">★</label><!--
+          --><input [disabled]="votado" id="radio4" (click)="valorar(4)" type="radio" name="estrellas" value="2"><!--
+          --><label for="radio4">★</label><!--
+          --><input [disabled]="votado" id="radio5" (click)="valorar(5)" type="radio" name="estrellas" value="1"><!--
+          --><label for="radio5">★</label>
+        </p>
+      </form><p>{{valoracion}}</p>
+    <button class="btn btn-success" [routerLink]="['/listado']">Volver Al
+        menu</button><br><br>
+    <button (click)="like()" class="btn btn-primary" [disabled]="liked">Me
+        gusta</button><div>Me gustas: {{video.likes}}</div><br><br>
+    <button (click)="disLike()" class="btn btn-danger" [disabled]="dislaked">No
+        me gusta</button><div>No gustan: {{video.dislikes}}</div>
+</div>
